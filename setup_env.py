@@ -22,7 +22,7 @@ def create_env_file():
     
     # Get bot token from user
     print("Your Telegram Bot Token is already configured!")
-    print("Bot Token: 8547108711:AAF-cjQuyfEHZ_FZDIwz0Qj8Sf2bZ6AAG50")
+    print("Bot Token: 8508365196:AAFQF5mD5RFEq1YBYxztSgPIjt0clxUhMzE")
     print()
     
     use_configured = input("Use this token? (y/n, default: y): ").strip().lower()
@@ -33,7 +33,7 @@ def create_env_file():
             print("Error: Bot token cannot be empty!")
             return
     else:
-        bot_token = "8547108711:AAF-cjQuyfEHZ_FZDIwz0Qj8Sf2bZ6AAG50"
+        bot_token = "8508365196:AAFQF5mD5RFEq1YBYxztSgPIjt0clxUhMzE"
     
     # MongoDB is already configured
     mongodb_uri = "mongodb+srv://nk9582235_db_user:Ia9NKRoQXPsM5szz@cluster0.akuzmvw.mongodb.net/?appName=Cluster0"
