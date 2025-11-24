@@ -187,26 +187,29 @@ class Database:
             return None
         except PyMongoError as e:
             logger.error(f"Failed to get batch file {batch_id}: {e}")
-            raise StorageError("get_batch_file", str(e))
+            return None
     
     def get_batches_by_org_code(self, org_code: str) -> List[BatchFile]:
         """
-        Retrieve all batch files for an organization
+        Get all batch files for an organization code from database
         
         Args:
             org_code: Organization code
             
         Returns:
-            List of BatchFile instances
+            List of BatchFile objects
         """
         try:
-            docs = self.batch_files.find({"org_code": org_code})
-            batches = [BatchFile.from_dict(doc) for doc in docs]
-            logger.info(f"Retrieved {len(batches)} batches for org {org_code}")
+            cursor = self.batch_files.find({"org_code": org_code})
+            batches = []
+            for doc in cursor:
+                batches.append(BatchFile.from_dict(doc))
+            logger.info(f"Retrieved {len(batches)} batches for org {org_code} from database")
             return batches
         except PyMongoError as e:
-            logger.error(f"Failed to get batches for org {org_code}: {e}")
-            raise StorageError("get_batches_by_org_code", str(e))
+            # If database fails, return empty list (will fetch from API instead)
+            logger.warning(f"Failed to get batches for org {org_code} from database: {e}")
+            return []
     
     def update_batch_file(self, batch_id: str, updates: Dict[str, Any]) -> bool:
         """

@@ -6,9 +6,10 @@
 ### Telegram Bot
 - **Bot Token**: `8508365196:AAFQF5mD5RFEq1YBYxztSgPIjt0clxUhMzE`
 
-### MongoDB Atlas
-- **Connection String**: `mongodb+srv://nk9582235_db_user:Ia9NKRoQXPsM5szz@cluster0.akuzmvw.mongodb.net/?appName=Cluster0`
+### MongoDB Atlas (NEW - Updated)
+- **Connection String**: `mongodb+srv://nk9582235_db_user:TVM1VuULifESdFb9@cluster0.gsewrqr.mongodb.net/?appName=Cluster0`
 - **Database Name**: `classplus_extractor`
+- **Password**: `TVM1VuULifESdFb9`
 
 ---
 
@@ -53,7 +54,7 @@ git push -u origin main
    | Key | Value |
    |-----|-------|
    | `BOT_TOKEN` | `8508365196:AAFQF5mD5RFEq1YBYxztSgPIjt0clxUhMzE` |
-   | `MONGODB_URI` | `mongodb+srv://nk9582235_db_user:Ia9NKRoQXPsM5szz@cluster0.akuzmvw.mongodb.net/?appName=Cluster0` |
+   | `MONGODB_URI` | `mongodb+srv://nk9582235_db_user:TVM1VuULifESdFb9@cluster0.gsewrqr.mongodb.net/?appName=Cluster0` |
    | `DATABASE_NAME` | `classplus_extractor` |
    | `CACHE_DIR` | `/tmp/cache/batch_files` |
    | `LOG_LEVEL` | `INFO` |
