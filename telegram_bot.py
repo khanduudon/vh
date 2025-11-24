@@ -321,7 +321,7 @@ def main() -> None:
     if not token:
         raise ValueError("BOT_TOKEN environment variable is not set!")
     
-    # Create application
+    # Create application with drop_pending_updates to avoid conflicts
     application = Application.builder().token(token).build()
     
     # Add conversation handler
@@ -336,6 +336,7 @@ def main() -> None:
             ],
         },
         fallbacks=[CommandHandler('cancel', cancel)],
+        per_message=False,  # Fix the warning
     )
     
     # Add handlers
@@ -346,9 +347,16 @@ def main() -> None:
     # Add error handler
     application.add_error_handler(error_handler)
     
-    # Start the bot
+    # Start the bot with drop_pending_updates to clear any conflicts
     logger.info("Starting bot...")
-    application.run_polling(allowed_updates=Update.ALL_TYPES)
+    try:
+        application.run_polling(
+            allowed_updates=Update.ALL_TYPES,
+            drop_pending_updates=True  # This fixes the "multiple instances" error
+        )
+    except Exception as e:
+        logger.error(f"Bot stopped with error: {e}")
+        raise
 
 
 if __name__ == '__main__':

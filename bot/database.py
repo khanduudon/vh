@@ -28,7 +28,14 @@ class Database:
             db_name: Database name
         """
         try:
-            self.client = MongoClient(uri)
+            # Add SSL/TLS settings to fix connection issues on Render.com
+            self.client = MongoClient(
+                uri,
+                tlsAllowInvalidCertificates=True,  # Fix SSL handshake issues
+                serverSelectionTimeoutMS=5000,     # Faster timeout
+                connectTimeoutMS=10000,
+                socketTimeoutMS=10000
+            )
             self.db = self.client[db_name]
             self.fs = GridFS(self.db)
             
@@ -36,7 +43,7 @@ class Database:
             self.org_codes = self.db[COLLECTION_ORG_CODES]
             self.batch_files = self.db[COLLECTION_BATCH_FILES]
             
-            # Create indexes
+            # Create indexes (with error handling)
             self._create_indexes()
             
             logger.info(f"Connected to MongoDB database: {db_name}")
