@@ -22,7 +22,7 @@ def create_env_file():
     
     # Get bot token from user
     print("Your Telegram Bot Token is already configured!")
-    print("Bot Token: 8508365196:AAFQF5mD5RFEq1YBYxztSgPIjt0clxUhMzE")
+    print("Bot Token: 8266651898:AAFTdgzKg9Cse8Wzw8aoH6XuDJ7TZ2-RefU")
     print()
     
     use_configured = input("Use this token? (y/n, default: y): ").strip().lower()
@@ -113,3 +113,4 @@ VALIDATE_SSL=True
 
 if __name__ == "__main__":
     create_env_file()
+
