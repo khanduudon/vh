@@ -1,11 +1,31 @@
 services:
-  - type: worker
-    name: classplus-telegram-bot
+  # Web service for the Telegram bot
+  - type: web
+    name: classplus-batch-bot
     env: python
+    region: oregon
+    plan: free
+    branch: main
     buildCommand: pip install -r requirements.txt
-    startCommand: python -m bot.telegram_bot
+    startCommand: python telegram_bot.py
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.9.15
-      - key: TELEGRAM_BOT_TOKEN
+      - key: BOT_TOKEN
         sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: DATABASE_NAME
+        value: classplus_extractor
+      - key: CLASSPLUS_BASE_URL
+        value: https://api.classplusapp.com
+      - key: CACHE_ENABLED
+        value: "True"
+      - key: CACHE_DIR
+        value: /tmp/cache/batch_files
+      - key: LOG_LEVEL
+        value: INFO
+      - key: API_TIMEOUT
+        value: "30"
+      - key: MAX_RETRIES
+        value: "3"
+      - key: PYTHON_VERSION
+        value: 3.11.0
